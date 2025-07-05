@@ -159,7 +159,16 @@ string  TypeWrtingEffect(string dialogue, double time)
     return dialogue;
 
 }
-enum PokemonChoice {
+
+enum class PokemonNature
+{
+    Fire,
+    Electric,
+    Water,
+    Earth,
+    Normal
+};
+enum class PokemonChoice {
     Charmander,
     Bulbasaur,
     Squirtle,
@@ -168,35 +177,39 @@ enum PokemonChoice {
 
 void ChosenPokemon(int pokemonIndex, map<int, string> dyanmicUserName)
 {
-   
-    PokemonChoice chosenPokemon = PokemonChoice::InvalidChoice;
+    PokemonChoice chosenPokemon;
 
-    
-    switch (chosenPokemon) {
+    switch (pokemonIndex) {
     case 1:
-        // Professor Oak Dialogue 6
-    
-        cout << ProfessorOakDialogue(6, WhiteSpaceLength(PlayerListInGame(0)), dyanmicUserName);
+        chosenPokemon = PokemonChoice::Charmander;
         break;
     case 2:
-        // Professor Oak Dialogue 7
-   
-        cout << ProfessorOakDialogue(7, WhiteSpaceLength(PlayerListInGame(0)), dyanmicUserName);
+        chosenPokemon = PokemonChoice::Bulbasaur;
         break;
     case 3:
-        // Professor Oak Dialogue 8
-      
+        chosenPokemon = PokemonChoice::Squirtle;
+        break;
+    default:
+        chosenPokemon = PokemonChoice::InvalidChoice;
+        break;
+    }
+
+    switch (chosenPokemon) {
+    case PokemonChoice::Charmander:
+        cout << ProfessorOakDialogue(6, WhiteSpaceLength(PlayerListInGame(0)), dyanmicUserName);
+        break;
+    case PokemonChoice::Bulbasaur:
+        cout << ProfessorOakDialogue(7, WhiteSpaceLength(PlayerListInGame(0)), dyanmicUserName);
+        break;
+    case PokemonChoice::Squirtle:
         cout << ProfessorOakDialogue(8, WhiteSpaceLength(PlayerListInGame(0)), dyanmicUserName);
         break;
     default:
-
         cout << AC_RED << "\nInvalid Pokémon selection.\n";
         break;
     }
-   
-
-   
 }
+
 
 string GetPokemonName(int pokemonIndex) {
     switch (pokemonIndex) {
